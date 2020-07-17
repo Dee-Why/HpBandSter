@@ -10,21 +10,25 @@ list, dict, Namespace, Lock, RLock, Semaphore, BoundedSemaphore, Condition, Even
 import multiprocessing as mp
 
 
-def f(d, l):
+def f(d, l, q):
     d[1] = '1'
     d['2'] = 2
     d[0.25] = None
     l.reverse()
+    q.put(['this','is','a','list','in','a','Queue'])
 
 
 if __name__ == '__main__':
     with mp.Manager() as manager:
         d = manager.dict()
         l = manager.list(range(10))
+        q = manager.Queue()
 
-        p = mp.Process(target=f, args=(d, l))
+        p = mp.Process(target=f, args=(d, l, q))
         p.start()
         p.join()
 
         print(d)  # manager有点C语言全局变量的感觉，进程间公用，比较方便，多进程共用时注意先后顺序和加锁
         print(l)
+        print(q)
+        print(q.get())

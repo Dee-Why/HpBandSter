@@ -9,10 +9,10 @@ import os
 
 def f(rlock, x):
     rlock.acquire()  # 两个参数 block和timeout，用于处理等待其他进程还锁
-    print(os.getpid(), 'get first key')
+    print(os.getpid(), 'get key once')
     try:
         rlock.acquire()  # 同一个进程可以多次acquire同一把R锁
-        print('get second key:, arg x = ', x)
+        print('get key twice:, arg x = ', x)
     finally:
         print('return second key')
         rlock.release()
