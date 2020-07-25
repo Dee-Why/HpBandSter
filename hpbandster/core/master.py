@@ -35,6 +35,12 @@ class Master(object):
 		"""The Master class is responsible for the book keeping and to decide what to run next. Optimizers are
                 instantiations of Master, that handle the important steps of deciding what configurations to run on what
                 budget when.
+
+                self里面包含的元素有 working_directory  logger  result_logger  config_generator  time_ref
+                					iteratons=[]  jobs=[] num_running_jobs
+                					job_queue_sizes  user_job_sizes  dynamic_queue_sizes
+                					warmstart_iteration (初始化时调用了import的方法)
+                					thread_cond  config  dispatcher  dispatcher_thread
 		
 		Parameters
 		----------

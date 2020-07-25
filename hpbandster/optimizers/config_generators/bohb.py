@@ -46,7 +46,7 @@ class BOHB(base_config_generator):
 
 		"""
 		super().__init__(**kwargs)
-		self.top_n_percent=top_n_percent
+		self.top_n_percent = top_n_percent
 		self.configspace = configspace
 		self.bw_factor = bandwidth_factor
 		self.min_bandwidth = min_bandwidth
@@ -57,7 +57,7 @@ class BOHB(base_config_generator):
 		
 		if self.min_points_in_model < len(self.configspace.get_hyperparameters())+1:
 			self.logger.warning('Invalid min_points_in_model value. Setting it to %i'%(len(self.configspace.get_hyperparameters())+1))
-			self.min_points_in_model =len(self.configspace.get_hyperparameters())+1
+			self.min_points_in_model = len(self.configspace.get_hyperparameters())+1
 		
 		self.num_samples = num_samples
 		self.random_fraction = random_fraction
@@ -74,10 +74,10 @@ class BOHB(base_config_generator):
 			
 			if hasattr(h, 'choices'):
 				self.kde_vartypes += 'u'
-				self.vartypes +=[ len(h.choices)]
+				self.vartypes += [len(h.choices)]
 			else:
 				self.kde_vartypes += 'c'
-				self.vartypes +=[0]
+				self.vartypes += [0]
 		
 		self.vartypes = np.array(self.vartypes, dtype=int)
 
